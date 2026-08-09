@@ -3,239 +3,1675 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="gonzimartstyle.css">
-    
+
+    <title>Gonzimart - Fashion Store</title>
+
+    <style>
+
+        /* ========================================
+           RESET
+        ======================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #111;
+            overflow-x: hidden;
+            background: #fff;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+
+        /* ========================================
+           NAVIGATION
+        ======================================== */
+
+        .main {
+            width: 100%;
+            min-height: 70px;
+            background: #000;
+            color: #fff;
+
+            display: flex;
+            align-items: center;
+            gap: 30px;
+
+            padding: 15px 5%;
+
+            position: relative;
+            z-index: 10;
+        }
+
+        .mainmenupic img {
+            width: 20px;
+            height: 25px;
+            object-fit: contain;
+        }
+
+        .main > div {
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .main > div:not(.sub):not(.mainmenupic) {
+            cursor: pointer;
+        }
+
+        .sub {
+            margin-left: auto;
+
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .sub img {
+            width: 25px;
+            height: 25px;
+            object-fit: contain;
+        }
+
+
+        /* ========================================
+           HERO SECTION
+        ======================================== */
+
+        .hero {
+            min-height: 500px;
+            position: relative;
+            overflow: hidden;
+            background: #f5f5f5;
+        }
+
+        .design {
+            width: 55%;
+            min-height: 500px;
+
+            padding: 120px 0 80px 8%;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        .p1 {
+            color: #777;
+            font-size: 15px;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .p2 {
+            font-size: 55px;
+            line-height: 1.1;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .p3 {
+            max-width: 450px;
+            color: #666;
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .p4 {
+            background: #000;
+            color: #fff;
+            border: none;
+
+            padding: 14px 32px;
+
+            font-size: 14px;
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .p4:hover {
+            background: #444;
+        }
+
+        .couple {
+            width: 55%;
+            height: 500px;
+
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        .couple img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+
+        /* ========================================
+           SECTION TITLE
+        ======================================== */
+
+        .section-title {
+            text-align: center;
+            margin: 80px 0 40px;
+        }
+
+        .section-title h1 {
+            font-size: 35px;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #777;
+        }
+
+
+        /* ========================================
+           PRODUCTS
+        ======================================== */
+
+        .products {
+            width: 90%;
+            max-width: 1200px;
+
+            margin: 50px auto;
+
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .product {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            background: #f5f5f5;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+
+            transition: transform 0.4s;
+        }
+
+        .product:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-name {
+            text-align: center;
+            font-size: 15px;
+            margin-top: 15px;
+        }
+
+
+        /* ========================================
+           LOAD MORE
+        ======================================== */
+
+        .load {
+            display: block;
+
+            margin: 50px auto 80px;
+
+            padding: 14px 35px;
+
+            background: #000;
+            color: #fff;
+
+            border: none;
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .load:hover {
+            background: #444;
+        }
+
+
+        /* ========================================
+           SERVICES
+        ======================================== */
+
+        .services {
+            width: 90%;
+            max-width: 1100px;
+
+            margin: 50px auto 90px;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .service {
+            overflow: hidden;
+        }
+
+        .service img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+
+            transition: 0.3s;
+        }
+
+        .service:hover img {
+            transform: scale(1.03);
+        }
+
+
+        /* ========================================
+           WINTER SALE
+        ======================================== */
+
+        .winter-women {
+            width: 90%;
+            max-width: 1100px;
+
+            margin: 80px auto;
+
+            display: flex;
+            align-items: center;
+
+            background: #f5f5f5;
+        }
+
+        .winter-women > img {
+            width: 50%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .winter {
+            width: 50%;
+            padding: 50px;
+        }
+
+        .ws {
+            color: #777;
+            font-size: 14px;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .wl {
+            font-size: 35px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .wt {
+            color: #666;
+            line-height: 1.7;
+            margin: 25px 0;
+        }
+
+
+        /* ========================================
+           CUSTOMER REVIEWS
+        ======================================== */
+
+        .customer {
+            text-align: center;
+
+            font-size: 35px;
+
+            margin-top: 90px;
+            margin-bottom: 25px;
+        }
+
+        .cust {
+            text-align: center;
+
+            color: #666;
+
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .ali {
+            text-align: center;
+
+            font-weight: bold;
+
+            margin-top: 20px;
+        }
+
+
+        /* ========================================
+           INSTAGRAM
+        ======================================== */
+
+        .instagram {
+            text-align: center;
+
+            font-size: 35px;
+
+            margin: 90px 0 40px;
+        }
+
+        .mangirl {
+            width: 90%;
+            max-width: 1200px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns: 1fr 2fr;
+
+            gap: 10px;
+        }
+
+        .main-instagram img {
+            width: 100%;
+            height: 410px;
+            object-fit: cover;
+        }
+
+        .girls {
+            display: flex;
+            flex-direction: column;
+
+            gap: 10px;
+        }
+
+        .girls1,
+        .girls2 {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 10px;
+        }
+
+        .girls img {
+            width: 100%;
+            height: 200px;
+
+            object-fit: cover;
+        }
+
+
+        /* ========================================
+           FOOTER
+        ======================================== */
+
+        .about {
+            background: #111;
+            color: #fff;
+
+            margin-top: 90px;
+
+            padding: 60px 7%;
+
+            display: grid;
+
+            grid-template-columns: repeat(5, 1fr);
+
+            gap: 40px;
+        }
+
+        .about h3 {
+            font-size: 17px;
+            margin-bottom: 20px;
+        }
+
+        .about p {
+            color: #aaa;
+            font-size: 14px;
+
+            margin-bottom: 10px;
+
+            line-height: 1.5;
+        }
+
+
+        /* ========================================
+           COPYRIGHT
+        ======================================== */
+
+        .copy {
+            min-height: 75px;
+
+            background: #000;
+            color: #fff;
+
+            padding: 10px 5%;
+
+            display: flex;
+            align-items: center;
+
+            gap: 10px;
+        }
+
+        .copy-symbol img {
+            width: 20px;
+            height: 25px;
+        }
+
+        .shi {
+            font-size: 14px;
+        }
+
+        .copysub {
+            margin-left: auto;
+
+            display: flex;
+            align-items: center;
+
+            gap: 15px;
+        }
+
+        .copysub img {
+            height: 35px;
+            width: auto;
+        }
+
+        .copysub input {
+            width: 70px;
+
+            padding: 5px;
+
+            color: #fff;
+
+            background: #000;
+
+            border: none;
+            border-bottom: 2px solid #fff;
+
+            outline: none;
+        }
+
+        .copysub input::placeholder {
+            color: #fff;
+        }
+
+
+        /* ========================================
+           TABLET
+        ======================================== */
+
+        @media (max-width: 900px) {
+
+            /* Navigation */
+
+            .main {
+                gap: 18px;
+                padding: 15px 3%;
+            }
+
+            .main > div {
+                font-size: 12px;
+            }
+
+            .sub {
+                gap: 12px;
+            }
+
+
+            /* Hero */
+
+            .hero {
+                min-height: 450px;
+            }
+
+            .design {
+                width: 60%;
+                min-height: 450px;
+
+                padding: 90px 30px 60px 6%;
+            }
+
+            .couple {
+                width: 55%;
+                height: 450px;
+            }
+
+            .p2 {
+                font-size: 42px;
+            }
+
+
+            /* Products */
+
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+
+                gap: 20px;
+            }
+
+            .product-image {
+                height: 250px;
+            }
+
+
+            /* Services */
+
+            .services {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
+            }
+
+
+            /* Winter */
+
+            .winter-women {
+                flex-direction: column;
+            }
+
+            .winter-women > img {
+                width: 100%;
+                height: 350px;
+            }
+
+            .winter {
+                width: 100%;
+                padding: 40px;
+            }
+
+
+            /* Instagram */
+
+            .mangirl {
+                grid-template-columns: 1fr;
+            }
+
+            .main-instagram img {
+                height: 400px;
+            }
+
+
+            /* Footer */
+
+            .about {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .copy {
+                flex-wrap: wrap;
+            }
+
+            .copysub {
+                width: 100%;
+
+                margin-left: 0;
+
+                justify-content: center;
+            }
+        }
+
+
+        /* ========================================
+           MOBILE
+        ======================================== */
+
+        @media (max-width: 600px) {
+
+            /* Navigation */
+
+            .main {
+                min-height: 60px;
+
+                padding: 12px 15px;
+
+                gap: 12px;
+            }
+
+            /*
+             Hide desktop menu items on mobile.
+             The hamburger icon remains visible.
+            */
+
+            .main > div:nth-child(2),
+            .main > div:nth-child(3),
+            .main > div:nth-child(4),
+            .main > div:nth-child(5) {
+                display: none;
+            }
+
+            .mainmenupic {
+                margin-right: auto;
+            }
+
+            .sub {
+                margin-left: 0;
+
+                gap: 10px;
+            }
+
+            .sub > div:first-child {
+                font-size: 10px;
+            }
+
+            .sub img {
+                width: 22px;
+                height: 22px;
+            }
+
+
+            /* Hero */
+
+            .hero {
+                min-height: 430px;
+            }
+
+            .design {
+                width: 100%;
+
+                min-height: 430px;
+
+                padding: 80px 25px 40px;
+
+                background: rgba(245, 245, 245, 0.88);
+            }
+
+            .couple {
+                width: 100%;
+                height: 430px;
+
+                opacity: 0.35;
+            }
+
+            .p1,
+            .p2,
+            .p3,
+            .p4 {
+                position: relative;
+                z-index: 3;
+            }
+
+            .p1 {
+                font-size: 13px;
+            }
+
+            .p2 {
+                font-size: 34px;
+            }
+
+            .p3 {
+                max-width: 330px;
+
+                font-size: 14px;
+            }
+
+
+            /* Section titles */
+
+            .section-title {
+                margin: 60px 20px 30px;
+            }
+
+            .section-title h1 {
+                font-size: 28px;
+            }
+
+
+            /* Products */
+
+            .products {
+                width: 92%;
+
+                grid-template-columns: repeat(2, 1fr);
+
+                gap: 12px;
+            }
+
+            .product-image {
+                height: 180px;
+            }
+
+            .product-name {
+                font-size: 13px;
+
+                margin-top: 10px;
+            }
+
+
+            /* Load more */
+
+            .load {
+                margin: 35px auto 60px;
+            }
+
+
+            /* Services */
+
+            .services {
+                width: 90%;
+
+                grid-template-columns: 1fr;
+
+                gap: 15px;
+            }
+
+            .service img {
+                height: auto;
+            }
+
+
+            /* Winter */
+
+            .winter-women {
+                width: 90%;
+
+                margin: 60px auto;
+            }
+
+            .winter-women > img {
+                height: 280px;
+            }
+
+            .winter {
+                padding: 30px 20px;
+            }
+
+            .wl {
+                font-size: 28px;
+            }
+
+            .wt {
+                font-size: 14px;
+            }
+
+
+            /* Customer reviews */
+
+            .customer {
+                font-size: 27px;
+
+                margin-top: 60px;
+
+                padding: 0 20px;
+            }
+
+            .cust {
+                padding: 0 20px;
+
+                font-size: 14px;
+            }
+
+
+            /* Instagram */
+
+            .instagram {
+                font-size: 27px;
+
+                padding: 0 15px;
+
+                margin: 60px 0 30px;
+            }
+
+            .mangirl {
+                width: 94%;
+
+                grid-template-columns: 1fr;
+            }
+
+            .main-instagram img {
+                height: 300px;
+            }
+
+            .girls1,
+            .girls2 {
+                grid-template-columns: repeat(2, 1fr);
+
+                gap: 5px;
+            }
+
+            .girls img {
+                height: 150px;
+            }
+
+
+            /* Footer */
+
+            .about {
+                grid-template-columns: 1fr 1fr;
+
+                padding: 45px 25px;
+
+                gap: 30px 20px;
+            }
+
+            .about h3 {
+                font-size: 16px;
+            }
+
+            .about p {
+                font-size: 13px;
+            }
+
+
+            /* Copyright */
+
+            .copy {
+                flex-direction: column;
+
+                justify-content: center;
+
+                text-align: center;
+
+                padding: 20px 15px;
+            }
+
+            .copysub {
+                width: 100%;
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+
+                gap: 10px;
+            }
+
+            .copysub img {
+                height: 30px;
+            }
+        }
+
+
+        /* ========================================
+           VERY SMALL MOBILE
+        ======================================== */
+
+        @media (max-width: 400px) {
+
+            .sub > div:first-child {
+                display: none;
+            }
+
+            .p2 {
+                font-size: 30px;
+            }
+
+            .products {
+                gap: 8px;
+            }
+
+            .product-image {
+                height: 160px;
+            }
+
+            .product-name {
+                font-size: 12px;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+            }
+
+            .girls img {
+                height: 130px;
+            }
+        }
+
+    </style>
 </head>
+
+
 <body>
-    <div class="gonz">
-       <div class="gonzimart">Gonzimart</h2></div>
-       <div class="catserch">
-       <div><input type="text" placeholder="All Categories" style="height: 30px; background-color: lightgrey; border: none; padding-left: 20px;"></div>
-       <div><input type="text" placeholder="Search here..." style="height: 30px; background-color: lightgray; border: none;padding-left: 20px; border-left: 1px solid black;"></div>
-       <div class="search"><img src="./gonzimart images/search.png" alt="" height="21px"></div>
-       </div>
-    </div>
 
-    <div class="main">
-            <div class="mainmenupic"><img src="./gonzimart images/main-menu.png" alt="" height="25px" width="20px" ></div>
-            <div>BROWSECATEGORIES</div>
-            <div>HOME</div>
-            <div>SHOP</div>
-            <div>BLOG</div>
-            <div>CONTACTS</div>
-        
-            <div class="sub">
-               <div>LOGINREGISTER</div>
-               <div><img src="./gonzimart images/white.png" alt="" height="25px"></div>
-               <div><img src="./gonzimart images/wishlist.png" alt="" height="25px"></div>
-               <div><img src="./gonzimart images/cart.png" alt="" height="25px"></div>
-              
+
+    <!-- ========================================
+         NAVIGATION
+    ========================================= -->
+
+    <header class="main">
+
+        <div class="mainmenupic">
+            <img
+                src="./gonzimart images/main-menu.png"
+                alt="Menu"
+            >
+        </div>
+
+        <div>BROWSE CATEGORIES</div>
+
+        <div>HOME</div>
+
+        <div>SHOP</div>
+
+        <div>BLOG</div>
+
+        <div>CONTACTS</div>
+
+
+        <div class="sub">
+
+            <div>LOGIN / REGISTER</div>
+
+            <div>
+                <img
+                    src="./gonzimart images/white.png"
+                    alt="Account"
+                >
             </div>
+
+            <div>
+                <img
+                    src="./gonzimart images/wishlist.png"
+                    alt="Wishlist"
+                >
+            </div>
+
+            <div>
+                <img
+                    src="./gonzimart images/cart.png"
+                    alt="Cart"
+                >
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ========================================
+         HERO
+    ========================================= -->
+
+    <section class="hero">
+
+        <div class="design">
+
+            <p class="p1">
+                WINTER SALE 50% OFF
+            </p>
+
+            <p class="p2">
+                Design For Beauty
+            </p>
+
+            <p class="p3">
+                You Can Have Anything You Want in Life
+                You Dress For It.
+            </p>
+
+            <button class="p4">
+                All Collection
+            </button>
+
+        </div>
+
+
+        <div class="couple">
+
+            <img
+                src="./gonzimart images/couple.png"
+                alt="Fashion couple"
+            >
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================================
+         PRODUCTS TITLE
+    ========================================= -->
+
+    <div class="section-title">
+
+        <h1>
+            Featured Products
+        </h1>
+
+        <p>
+            Discover our latest collection
+        </p>
+
     </div>
 
-<div class="coupledesign">
-    
-    <div class="design">
-        <p class="p1">WINTER SALE 50% off</p>
-        <p class="p2">Design For Beauty</p>
-        <p class="p3">You Can Have Anything You Want in Life You Dress For it. </p>
-        <button class="p4">All Collection</button>
-    </div>
-    <div class="couple">
-        <img src="./gonzimart images/couple.png" alt="">
-    </div>
 
- </div> 
 
- <div class="img">
-    <div><img src="./gonzimart images/man.png" alt="" height="300px" width="350px"></div>
-    <div><img src="./gonzimart images/girly.png" alt="" height="300px" width="350px"></div>
-    <div><img src="./gonzimart images/kids.png" alt="" height="300px" width="350px"></div>
+    <!-- ========================================
+         PRODUCTS
+    ========================================= -->
 
- </div>
+    <section class="products">
 
- <h1 class="best">Best Sell Product </h1>     
- <div class="shirt">
- <button class="btn">All</button>
- <button class="btn">Casual Shirt</button>
- <button class="btn">Formal Shirt</button>
- <button class="btn">T-Shirt</button>
- <button class="btn">Hoddi</button>
- <button class="btn">Linde wear</button>
- <button class="btn">Pant</button>
- </div>
 
- 
- <div class="photos">
-   <div><img src="./gonzimart images/mul4.png" alt="" height="183px" width="250px"></div>
-   <div><img src="./gonzimart images/mul5.png" alt="" height="183px" width="250px"></div>
-   <div><img src="./gonzimart images/mul6.png" alt="" height="183px" width="250px"></div>
-   <div><img src="./gonzimart images/girly.png" alt=""height="183px" width="250px"></div>
-</div>
+        <div class="product">
 
-<div class="bj">
-     <p>Black Jeans $150.00</p>
-     <p>Black Jeans $150.00</p>
-     <p>Black Jeans $150.00</p>
-     <p>Black Jeans $150.00</p>
-    </div>
+            <div class="product-image">
+                <img
+                    src="./gonzimart images/mul4.png"
+                    alt="Black Jeans"
+                >
+            </div>
 
-   
-    
+            <p class="product-name">
+                Black Jeans $150.00
+            </p>
 
-    <div class="photos-sub">        
-     <div><img src="./gonzimart images/mul4.png" alt="" height="183px" width="250px"></div>
-     <div><img src="./gonzimart images/mul5.png" alt="" height="183px" width="250px"></div>
-     <div><img src="./gonzimart images/mul6.png" alt="" height="183px" width="250px"></div>
-     <div><img src="./gonzimart images/girly.png"alt="" height="183px" width="250px"></div>
-    </div>
+        </div>
 
-    <div class="bj">
-     <p>Black Jeans $150.00</p>
-     <p>Black Jeans $150.00</p>
-     <p>Black Jeans $150.00</p>
-     <p>Black Jeans $150.00</p>
-    </div>
 
-    <div class="photos-sub">        
-     <div><img src="./gonzimart images/mul4.png" alt="" height="183px" width="250px"></div>
-     <div><img src="./gonzimart images/mul5.png" alt="" height="183px" width="250px"></div>
-     <div><img src="./gonzimart images/mul6.png" alt="" height="183px" width="250px"></div>
-     <div><img src="./gonzimart images/girly.png"alt="" height="183px" width="250px"></div>
-    </div>
+        <div class="product">
 
-    <div class="bj">
-     <p>Black Jeans $150.00</p>
-     <p>Black Jeans $150.00</p>
-     <p>Black Jeans $150.00</p>
-     <p>Black Jeans $150.00</p>
-    </div>
+            <div class="product-image">
+                <img
+                    src="./gonzimart images/mul5.png"
+                    alt="Black Jeans"
+                >
+            </div>
 
-    <div class="photos-sub">        
-     <div><img src="./gonzimart images/mul4.png" alt="" height="183px" width="250px"></div>
-     <div><img src="./gonzimart images/mul5.png" alt="" height="183px" width="250px"></div>
-     <div><img src="./gonzimart images/mul6.png" alt="" height="183px" width="250px"></div>
-     <div><img src="./gonzimart images/girly.png"alt="" height="183px" width="250px"></div>
-    </div>
+            <p class="product-name">
+                Black Jeans $150.00
+            </p>
 
-    <div class="bj">
-     <p>Black Jeans $150.00</p>
-     <p>Black Jeans $150.00</p>
-     <p>Black Jeans $150.00</p>
-     <p>Black Jeans $150.00</p>
-    </div>
+        </div>
 
-    <button class="load">Load More</button>
 
-    <div class="img">
-        <div><img src="./gonzimart images/freeship.png" alt="" height="250px"; weight="300px"></div>
-        <div><img src="./gonzimart images/support.png" alt="" height="250px"; weight="300px"></div>
-        <div><img src="./gonzimart images/money.png" alt="" height="250px"; weight="300px"></div>
-    </div>
+        <div class="product">
 
-    <div class="winter-women">
-        
-        <img src="./gonzimart images/curly.png" alt="" height="350px"; weight="300px">
-         
-    
+            <div class="product-image">
+                <img
+                    src="./gonzimart images/mul6.png"
+                    alt="Black Jeans"
+                >
+            </div>
+
+            <p class="product-name">
+                Black Jeans $150.00
+            </p>
+
+        </div>
+
+
+        <div class="product">
+
+            <div class="product-image">
+                <img
+                    src="./gonzimart images/girly.png"
+                    alt="Black Jeans"
+                >
+            </div>
+
+            <p class="product-name">
+                Black Jeans $150.00
+            </p>
+
+        </div>
+
+
+        <div class="product">
+
+            <div class="product-image">
+                <img
+                    src="./gonzimart images/mul4.png"
+                    alt="Black Jeans"
+                >
+            </div>
+
+            <p class="product-name">
+                Black Jeans $150.00
+            </p>
+
+        </div>
+
+
+        <div class="product">
+
+            <div class="product-image">
+                <img
+                    src="./gonzimart images/mul5.png"
+                    alt="Black Jeans"
+                >
+            </div>
+
+            <p class="product-name">
+                Black Jeans $150.00
+            </p>
+
+        </div>
+
+
+        <div class="product">
+
+            <div class="product-image">
+                <img
+                    src="./gonzimart images/mul6.png"
+                    alt="Black Jeans"
+                >
+            </div>
+
+            <p class="product-name">
+                Black Jeans $150.00
+            </p>
+
+        </div>
+
+
+        <div class="product">
+
+            <div class="product-image">
+                <img
+                    src="./gonzimart images/girly.png"
+                    alt="Black Jeans"
+                >
+            </div>
+
+            <p class="product-name">
+                Black Jeans $150.00
+            </p>
+
+        </div>
+
+
+        <div class="product">
+
+            <div class="product-image">
+                <img
+                    src="./gonzimart images/mul4.png"
+                    alt="Black Jeans"
+                >
+            </div>
+
+            <p class="product-name">
+                Black Jeans $150.00
+            </p>
+
+        </div>
+
+
+        <div class="product">
+
+            <div class="product-image">
+                <img
+                    src="./gonzimart images/mul5.png"
+                    alt="Black Jeans"
+                >
+            </div>
+
+            <p class="product-name">
+                Black Jeans $150.00
+            </p>
+
+        </div>
+
+
+        <div class="product">
+
+            <div class="product-image">
+                <img
+                    src="./gonzimart images/mul6.png"
+                    alt="Black Jeans"
+                >
+            </div>
+
+            <p class="product-name">
+                Black Jeans $150.00
+            </p>
+
+        </div>
+
+
+        <div class="product">
+
+            <div class="product-image">
+                <img
+                    src="./gonzimart images/girly.png"
+                    alt="Black Jeans"
+                >
+            </div>
+
+            <p class="product-name">
+                Black Jeans $150.00
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <button class="load">
+        LOAD MORE
+    </button>
+
+
+
+    <!-- ========================================
+         SERVICES
+    ========================================= -->
+
+    <section class="services">
+
+
+        <div class="service">
+
+            <img
+                src="./gonzimart images/freeship.png"
+                alt="Free Shipping"
+            >
+
+        </div>
+
+
+        <div class="service">
+
+            <img
+                src="./gonzimart images/support.png"
+                alt="Customer Support"
+            >
+
+        </div>
+
+
+        <div class="service">
+
+            <img
+                src="./gonzimart images/money.png"
+                alt="Money Back"
+            >
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================================
+         WINTER SALE
+    ========================================= -->
+
+    <section class="winter-women">
+
+        <img
+            src="./gonzimart images/curly.png"
+            alt="Winter Fashion"
+        >
+
+
         <div class="winter">
-        <p class="ws">SALE EVENT</p>
-        <div class="wl">Winter Product </div>
-        <div class="wl">Limited Offer-S25 </div>
-        <p class="wt">You Can Have Anything You Want in Life You Dress For it. </p>
-        <button class="p4">View More</button>
-         </div>
-    </div> 
-       
-    <h1 class="customer">Customer Reviews</h1>
-    <div class="cust">As Women Who Value Our Health,Were To Do What We Do Best-Roll </div>
-    <div class="cust"> Up Our Sleeves To Get It Done Right.</div>
-    <p class="ali">Alisha Jico</p>
-    <h1 class="instagram">Instagram With #September</h1>
 
-    <div class="mangirl" >
-        <div><img src="./gonzimart images/single.png" alt="" height="405px"></div>
+            <p class="ws">
+                SALE EVENT
+            </p>
+
+            <div class="wl">
+                Winter Product
+            </div>
+
+            <div class="wl">
+                Limited Offer-S25
+            </div>
+
+            <p class="wt">
+                You Can Have Anything You Want in Life
+                You Dress For It.
+            </p>
+
+            <button class="p4">
+                View More
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================================
+         CUSTOMER REVIEWS
+    ========================================= -->
+
+    <section>
+
+        <h1 class="customer">
+            Customer Reviews
+        </h1>
+
+        <div class="cust">
+            As Women Who Value Our Health, We're To Do
+            What We Do Best - Roll
+        </div>
+
+        <div class="cust">
+            Up Our Sleeves To Get It Done Right.
+        </div>
+
+        <p class="ali">
+            Alisha Jico
+        </p>
+
+    </section>
+
+
+
+    <!-- ========================================
+         INSTAGRAM
+    ========================================= -->
+
+    <h1 class="instagram">
+        Instagram With #September
+    </h1>
+
+
+    <section class="mangirl">
+
+
+        <div class="main-instagram">
+
+            <img
+                src="./gonzimart images/single.png"
+                alt="Instagram fashion"
+            >
+
+        </div>
+
+
         <div class="girls">
+
+
             <div class="girls1">
-                <div><img src="./gonzimart images/mul1.png" alt="" height="200px"></div>
-                <div><img src="./gonzimart images/mul2.png" alt="" height="200px"></div>
-                <div><img src="./gonzimart images/mul3.png" alt="" height="200px"></div>
+
+                <div>
+                    <img
+                        src="./gonzimart images/mul1.png"
+                        alt="Fashion"
+                    >
+                </div>
+
+                <div>
+                    <img
+                        src="./gonzimart images/mul2.png"
+                        alt="Fashion"
+                    >
+                </div>
+
+                <div>
+                    <img
+                        src="./gonzimart images/mul3.png"
+                        alt="Fashion"
+                    >
+                </div>
+
             </div>
-            <div class="girls2" >
-                <div><img src="./gonzimart images/mul4.png" alt="" height="200px"></div>
-                <div><img src="./gonzimart images/mul5.png" alt="" height="200px"></div>
-                <div><img src="./gonzimart images/mul6.png" alt="" height="200px"></div>
+
+
+            <div class="girls2">
+
+                <div>
+                    <img
+                        src="./gonzimart images/mul4.png"
+                        alt="Fashion"
+                    >
+                </div>
+
+                <div>
+                    <img
+                        src="./gonzimart images/mul5.png"
+                        alt="Fashion"
+                    >
+                </div>
+
+                <div>
+                    <img
+                        src="./gonzimart images/mul6.png"
+                        alt="Fashion"
+                    >
+                </div>
+
             </div>
+
+
         </div>
 
-    </div>
-    
-    <div class="about">
-        <div>
-            <h3>About Shop</h3>
-            <p>fdfdfdded<p>
-            <p>dfdfdfd</p>
-            <p>dfdcdvcd</p>
-            <p>dfsfsfsd</p>
+    </section>
+
+
+
+    <!-- ========================================
+         FOOTER
+    ========================================= -->
+
+    <footer>
+
+
+        <div class="about">
+
+
+            <div>
+
+                <h3>
+                    About Shop
+                </h3>
+
+                <p>
+                    Welcome to our fashion store.
+                </p>
+
+                <p>
+                    Quality products for everyone.
+                </p>
+
+                <p>
+                    Discover our latest collection.
+                </p>
+
+                <p>
+                    Shop with confidence.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Information
+                </h3>
+
+                <p>
+                    About Us
+                </p>
+
+                <p>
+                    Contact Us
+                </p>
+
+                <p>
+                    Privacy Policy
+                </p>
+
+                <p>
+                    Terms & Conditions
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Customer Service
+                </h3>
+
+                <p>
+                    My Account
+                </p>
+
+                <p>
+                    Order History
+                </p>
+
+                <p>
+                    Wishlist
+                </p>
+
+                <p>
+                    Returns
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Categories
+                </h3>
+
+                <p>
+                    Women
+                </p>
+
+                <p>
+                    Men
+                </p>
+
+                <p>
+                    Accessories
+                </p>
+
+                <p>
+                    New Arrivals
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Contact
+                </h3>
+
+                <p>
+                    Email: info@example.com
+                </p>
+
+                <p>
+                    Phone: +91 00000 00000
+                </p>
+
+                <p>
+                    Fashion Street
+                </p>
+
+                <p>
+                    India
+                </p>
+
+            </div>
+
+
         </div>
-        <div>
-            <h3>About Shop</h3>
-            <p>fdfdfdded<p>
-            <p>dfdfdfd</p>
-            <p>dfdcdvcd</p>
-            <p>dfsfsfsd</p>
-        </div>
-        <div>
-            <h3>About Shop</h3>
-            <p>fdfdfdded<p>
-            <p>dfdfdfd</p>
-            <p>dfdcdvcd</p>
-            <p>dfsfsfsd</p>
-        </div>
-        <div>
-            <h3>About Shop</h3>
-            <p>fdfdfdded<p>
-            <p>dfdfdfd</p>
-            <p>dfdcdvcd</p>
-            <p>dfsfsfsd</p>
-        </div>
-        <div>
-            <h3>About Shop</h3>
-            <p>fdfdfdded<p>
-            <p>dfdfdfd</p>
-            <p>dfdcdvcd</p>
-            <p>dfsfsfsd</p>
-        </div>
-    </div>  
-    
-    <div class="copy">
-            <div><img src="./gonzimart images/copyright.png" alt="" height="25px" width="20px" ></div>
-            <div class="shi">Shishir&Brothers.All Rights Reserved</div>
-        
+
+
+
+        <!-- ========================================
+             COPYRIGHT
+        ========================================= -->
+
+        <div class="copy">
+
+
+            <div class="copy-symbol">
+
+                <img
+                    src="./gonzimart images/copyright.png"
+                    alt="Copyright"
+                >
+
+            </div>
+
+
+            <div class="shi">
+                Shishir & Brothers. All Rights Reserved
+            </div>
+
+
             <div class="copysub">
-               <div><img src="./gonzimart images/visa.png" alt="" height="45px"></div>
-               <div><img src="./gonzimart images/card.png" alt="" height="45px"></div>
-               <div><img src="./gonzimart images/stripe.png" alt="" height="45px"></div>
-               <div><img src="./gonzimart images/paypal.png" alt="" height="45px"></div>
-               <div><input type="text" placeholder="EN"  style="width: 80px; margin-top: 10px; border:none; background-color: black; border-bottom: 2px solid white;"></div>
-               <div><input type="text" placeholder="USD" style="width: 80px; margin-top: 10px; border:none; background-color: black; border-bottom: 2px solid white;"></div>
-              
+
+
+                <div>
+                    <img
+                        src="./gonzimart images/visa.png"
+                        alt="Visa"
+                    >
+                </div>
+
+
+                <div>
+                    <img
+                        src="./gonzimart images/card.png"
+                        alt="Card"
+                    >
+                </div>
+
+
+                <div>
+                    <img
+                        src="./gonzimart images/stripe.png"
+                        alt="Stripe"
+                    >
+                </div>
+
+
+                <div>
+                    <img
+                        src="./gonzimart images/paypal.png"
+                        alt="Paypal"
+                    >
+                </div>
+
+
+                <div>
+                    <input
+                        type="text"
+                        placeholder="EN"
+                    >
+                </div>
+
+
+                <div>
+                    <input
+                        type="text"
+                        placeholder="USD"
+                    >
+                </div>
+
+
             </div>
-    </div>
-            
 
 
+        </div>
 
 
-        
-         
-              
+    </footer>
 
 
-        
-
-
-    
 </body>
 </html>
